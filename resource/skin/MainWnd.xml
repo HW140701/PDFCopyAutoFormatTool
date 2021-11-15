@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<Window size="600,600" roundcorner="0,0" sizebox="6,6,6,6" caption="0,0,0,90" mininfo="1280,800" >
+<Window size="600,480" roundcorner="0,0" sizebox="6,6,6,6" caption="0,0,0,90" mininfo="600,600" >
 	<Font id="0" name="微软雅黑" size="36" bold="true"/>
 	<Font id="1" name="微软雅黑" size="28" bold="false"/>
 	<Font id="2" name="微软雅黑" size="24" bold="false"/>
 	<Font id="3" name="微软雅黑" size="72" bold="true"/>
 	
-	<VerticalLayout bkcolor="0xFF5787FF">
+	<VerticalLayout bkcolor="0xFFFFFFFF">
 		<!-- 标题栏 -->
-		<HorizontalLayout height="58">
+		<HorizontalLayout height="32">
 			<Control />
-			<HorizontalLayout width="206">
-				<Button name="Btn_Min" width="40" height="40" padding="0,9,0,0" normalimage="file='最小化.png'" hotimage="file='最小化悬停.png'"/>
-				<Button name="Btn_Max" width="40" height="40" padding="28,9,0,0" normalimage="file='最大化.png'" hotimage="file='最大化悬停.png'"/>
-				<Button name="Btn_Close" width="40" height="40" padding="28,9,0,0" normalimage="file='关闭.png'" hotimage="file='关闭悬停.png'"/>
+			<HorizontalLayout width="80">
+				<Button name="Btn_Min" width="24" height="24" padding="0,0,0,0" normalimage="file='最小化.png'" hotimage="file='最小化悬停.png'"/>
+				<Button name="Btn_Max" width="24" height="24" padding="0,0,0,0" normalimage="file='最大化.png'" hotimage="file='最大化悬停.png'"/>
+				<Button name="Btn_Close" width="24" height="24" padding="0,0,0,0" normalimage="file='关闭.png'" hotimage="file='关闭悬停.png'"/>
 			</HorizontalLayout>
 		</HorizontalLayout>
 		

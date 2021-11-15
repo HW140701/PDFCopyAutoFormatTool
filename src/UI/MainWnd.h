@@ -12,7 +12,12 @@ public:
 public:
 	virtual LPCTSTR GetWindowClassName() const;															// 设置程序类名称
 	virtual DuiLib::CDuiString GetSkinFile();															// 设置皮肤文件
-	virtual CDuiString GetSkinFolder();																    // 设置皮肤文件路
+	virtual CDuiString GetSkinFolder();																    // 设置皮肤文件路径
+	virtual void Notify(TNotifyUI& msg);															    // 响应duilib的各种消息
+
+private:
+	void OnClickProcess(TNotifyUI& msg);															    // 点击事件处理函数
+
 };
 
 
