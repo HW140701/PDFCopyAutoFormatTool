@@ -17,6 +17,9 @@
     <ClInclude Include="..\src\UI\MainWnd.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\ProjectUtils\ProjectUtils.h">
+      <Filter>ProjectUtils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ProjectUtils">

@@ -166,6 +166,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\ProjectHeader.h" />
     <ClInclude Include="..\src\ProjectUtils\PathUtils.h" />
+    <ClInclude Include="..\src\ProjectUtils\ProjectUtils.h" />
     <ClInclude Include="..\src\UI\MainWnd.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -28,8 +28,13 @@ using namespace DuiLib;
 //#endif 
 
 
+
+// std标准库
+#include <regex>
+
+
 // 自定义工具
 #include "ProjectUtils/PathUtils.h"
-
+#include "ProjectUtils/ProjectUtils.h"
 
 #endif // !PROJECT_HEADER_H

@@ -17,7 +17,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
 	// 第三步：创建窗口类
 	MainWnd pMainWnd;
-	pMainWnd.Create(NULL, _T("手语词汇识别数据集标准化工具"), UI_WNDSTYLE_FRAME, WS_EX_WINDOWEDGE);
+	pMainWnd.Create(NULL, _T("PDFCopyAutoFormatTool"), UI_WNDSTYLE_FRAME, WS_EX_WINDOWEDGE);
 
 	pMainWnd.CenterWindow();
 	::ShowWindow(pMainWnd, SW_SHOW);

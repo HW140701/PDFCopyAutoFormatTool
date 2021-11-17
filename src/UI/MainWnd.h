@@ -14,10 +14,17 @@ public:
 	virtual DuiLib::CDuiString GetSkinFile();															// 设置皮肤文件
 	virtual CDuiString GetSkinFolder();																    // 设置皮肤文件路径
 	virtual void Notify(TNotifyUI& msg);															    // 响应duilib的各种消息
+	virtual void InitWindow();                                                                          // 窗口初始化函数
 
 private:
+	void InitControl();																				    // 初始化相关控件指针
 	void OnClickProcess(TNotifyUI& msg);															    // 点击事件处理函数
+	void OnTextChanged(TNotifyUI& msg);																	// 文本改变时间处理函数
+	void InitWindowShadow();																			// 初始化窗体阴影
 
+private:
+	CRichEditUI* m_pRichEdit_Input;
+	CRichEditUI* m_pRichEdit_Output;
 };
 
 
