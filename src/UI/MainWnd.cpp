@@ -112,6 +112,11 @@ void MainWnd::OnTextChanged(TNotifyUI& msg)
 
 void MainWnd::InitWindowShadow()
 {
+	m_WndShadow.Create(m_hWnd);
+	m_WndShadow.SetSize(10);
+	m_WndShadow.SetSharpness(15);
+	m_WndShadow.SetDarkness(70);
+	m_WndShadow.SetPosition(0, 0);
 }
 
 void MainWnd::InitControl()

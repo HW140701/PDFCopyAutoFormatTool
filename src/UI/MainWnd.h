@@ -23,6 +23,8 @@ private:
 	void InitWindowShadow();																			// 初始化窗体阴影
 
 private:
+	CWndShadow m_WndShadow;
+
 	CRichEditUI* m_pRichEdit_Input;
 	CRichEditUI* m_pRichEdit_Output;
 };
