@@ -30,11 +30,16 @@
 			</VerticalLayout>
 			<Control width="20" />
 			<VerticalLayout name="VerticalLayout_Setting" width="200" visible="false">
-				<HorizontalLayout>
+				<Control height="10" />
+				<HorizontalLayout height="50">
+					<Text text="软件置顶" font="2" />
+					<Button name="Btn_FrontWnd" width="48" height="24" padding="0,0,0,0" normalimage="file='开关-关.png'" hotimage="file='开关-关悬停.png'"/>
+				</HorizontalLayout>
+				<HorizontalLayout height="50">
 					<Text text="自动复制结果到剪切板" font="2" />
 					<Button name="Btn_AutoCopyResultToClipboard" width="48" height="24" padding="0,0,0,0" normalimage="file='开关-关.png'" hotimage="file='开关-关悬停.png'"/>
 				</HorizontalLayout>
-				
+				<Control />
 			</VerticalLayout>
 		</HorizontalLayout>
 		
