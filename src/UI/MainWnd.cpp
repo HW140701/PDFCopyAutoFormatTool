@@ -45,6 +45,14 @@ void MainWnd::Notify(TNotifyUI& msg)
 	{
 		OnTextChanged(msg);
 	}
+	else if (_tcsicmp(msg.sType, _T("killfocus")) == 0)
+	{
+		OnKillFocus(msg);
+	}
+	else if (_tcsicmp(msg.sType, _T("setfocus")) == 0)
+	{
+		OnSetFocus(msg);
+	}
 
 	WindowImplBase::Notify(msg);
 }
@@ -95,7 +103,45 @@ void MainWnd::OnTextChanged(TNotifyUI& msg)
 			if (m_pRichEdit_Output != nullptr)
 			{
 				m_pRichEdit_Output->SetText(richEdit_Input_str.c_str());
+
+				int inputPos = m_pRichEdit_Input->GetVerticalScrollBar()->GetScrollPos();
+
+				m_pRichEdit_Output->GetVerticalScrollBar()->SetScrollPos(inputPos);
+				m_pRichEdit_Output->GetVerticalScrollBar()->NeedUpdate();
+				m_pRichEdit_Output->GetVerticalScrollBar()->Invalidate();
+
+				m_pRichEdit_Input->SetFocus();
+
+				AutoCopyToClipboard(richEdit_Input_str);
 			}
+		}
+	}
+}
+
+void MainWnd::OnKillFocus(TNotifyUI& msg)
+{
+	if (_tcsicmp(msg.pSender->GetName(), MainWnd_RichEdit_Input_Name) == 0)
+	{
+		if (m_pRichEdit_Input != nullptr)
+		{
+			if (!m_pRichEdit_Input->IsFocused())
+			{
+				//m_pRichEdit_Output->SetFocus();
+
+				m_PaintManager.SetFocus(m_pRichEdit_Input, true);
+				m_PaintManager.Invalidate();
+			}
+		}
+	}
+}
+
+void MainWnd::OnSetFocus(TNotifyUI& msg)
+{
+	if (_tcsicmp(msg.pSender->GetName(), MainWnd_RichEdit_Input_Name) == 0)
+	{
+		if (m_pRichEdit_Input != nullptr)
+		{
+			m_pRichEdit_Input->SetFocusBorderColor(0xFF6d9eeb);
 		}
 	}
 }
@@ -107,6 +153,37 @@ void MainWnd::InitWindowShadow()
 	m_WndShadow.SetSharpness(15);
 	m_WndShadow.SetDarkness(70);
 	m_WndShadow.SetPosition(0, 0);
+}
+
+void MainWnd::AutoCopyToClipboard(const std::string& copy_content)
+{
+	DWORD copy_content_length = copy_content.length();
+	// 分配内存
+	HANDLE hGlobalMemory = GlobalAlloc(GMEM_MOVEABLE, copy_content_length + 1);
+
+	// 锁定内存
+	LPBYTE lpGlobalMemory = (LPBYTE)GlobalLock(hGlobalMemory); 
+
+	// 将字符串复制到全局内存块
+	memcpy(lpGlobalMemory, copy_content.c_str(), copy_content_length);
+
+	// 锁定内存块解锁
+	GlobalUnlock(hGlobalMemory); 
+
+	// 获取安全窗口句柄
+	HWND hWnd = this->GetHWND(); 
+
+	// 打开剪贴板
+	::OpenClipboard(hWnd); 
+
+	// 清空剪贴板
+	::EmptyClipboard(); 
+
+	// 将内存中的数据放置到剪贴板
+	::SetClipboardData(CF_TEXT, hGlobalMemory); 
+
+	// 关闭剪贴板
+	::CloseClipboard(); 
 }
 
 void MainWnd::InitControl()

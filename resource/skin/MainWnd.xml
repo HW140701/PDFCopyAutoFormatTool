@@ -21,9 +21,9 @@
 		<HorizontalLayout >
 			<Control width="20" />
 			<VerticalLayout>
-				<RichEdit name="RichEdit_Input" bordercolor="0xFF000000" bordersize="1" borderround="3,3" font="1" multiline="true" vscrollbar="true"  autovscroll="true" />
+				<RichEdit name="RichEdit_Input" inset="5,5,5,5" bordercolor="0xFF000000" focusbordercolor="0xFF6d9eeb"  bordersize="2" borderround="3,3" font="1" multiline="true" vscrollbar="true"  autovscroll="true" />
 				<Control height="10" />
-				<RichEdit name="RichEdit_Output" bordercolor="0xFF000000" bordersize="1" borderround="3,3" font="1" multiline="true" vscrollbar="true"  autovscroll="true" readonly="true"/>
+				<RichEdit name="RichEdit_Output" inset="5,5,5,5" bordercolor="0xFF000000" focusbordercolor="0xFF6d9eeb" bordersize="2" borderround="3,3" font="1" multiline="true" vscrollbar="true"  autovscroll="true" readonly="true"/>
 			</VerticalLayout>
 			<Control width="20" />
 		</HorizontalLayout>
