@@ -32,10 +32,14 @@ private:
 	CRichEditUI* m_pRichEdit_Output;
 
 	CButtonUI* m_pButton_AutoCopyResultToClipboard;
+	CButtonUI* m_pButton_FrontWnd;
 
 	CVerticalLayoutUI* m_pVerticalLayout_Setting;
+	CVerticalLayoutUI* m_pVerticalLayout_Expand;
+	CVerticalLayoutUI* m_pVerticalLayout_Shrink;
 
 	bool m_bAutoCopyResultToClipboard;
+	bool m_bFrontWnd;
 };
 
 

@@ -11,10 +11,10 @@
 		<HorizontalLayout height="32" bkcolor="0xFF80397B">
 			<Control />
 			<HorizontalLayout width="104">
-				<Button name="Btn_Setting" width="24" height="24" padding="0,0,0,0" normalimage="file='设置.png'" hotimage="file='设置悬停.png'"/>
-				<Button name="Btn_Min" width="24" height="24" padding="0,0,0,0" normalimage="file='最小化.png'" hotimage="file='最小化悬停.png'"/>
-				<Button name="Btn_Max" width="24" height="24" padding="0,0,0,0" normalimage="file='最大化.png'" hotimage="file='最大化悬停.png'"/>
-				<Button name="Btn_Close" width="24" height="24" padding="0,0,0,0" normalimage="file='关闭.png'" hotimage="file='关闭悬停.png'"/>
+				<Button name="Btn_Setting" width="24" height="24" padding="0,0,0,0" normalimage="file='设置.png'" hotimage="file='设置悬停.png'" tooltip="设置"/>
+				<Button name="Btn_Min" width="24" height="24" padding="0,0,0,0" normalimage="file='最小化.png'" hotimage="file='最小化悬停.png'" tooltip="最小化" />
+				<Button name="Btn_Max" width="24" height="24" padding="0,0,0,0" normalimage="file='最大化.png'" hotimage="file='最大化悬停.png'" tooltip="最大化" />
+				<Button name="Btn_Close" width="24" height="24" padding="0,0,0,0" normalimage="file='关闭.png'" hotimage="file='关闭悬停.png'" tooltip="关闭" />
 			</HorizontalLayout>
 		</HorizontalLayout>
 		
@@ -24,15 +24,22 @@
 		<HorizontalLayout >
 			<Control width="20" />
 			<VerticalLayout>
-				<RichEdit name="RichEdit_Input" inset="5,5,5,5" bordercolor="0xFF000000" focusbordercolor="0xFF6d9eeb"  bordersize="2" borderround="3,3" font="1" multiline="true" vscrollbar="true"  autovscroll="true" />
+				<RichEdit name="RichEdit_Input" tooltip="输入文本" inset="5,5,5,5" bordercolor="0xFF000000" focusbordercolor="0xFF6d9eeb"  bordersize="2" borderround="3,3" font="1" multiline="true" vscrollbar="true"  autovscroll="true" />
 				<Control height="10" />
-				<RichEdit name="RichEdit_Output" inset="5,5,5,5" bordercolor="0xFF000000" focusbordercolor="0xFF6d9eeb" bordersize="2" borderround="3,3" font="1" multiline="true" vscrollbar="true"  autovscroll="true" readonly="true"/>
+				<RichEdit name="RichEdit_Output" tooltip="输出文本" inset="5,5,5,5" bordercolor="0xFF000000" focusbordercolor="0xFF6d9eeb" bordersize="2" borderround="3,3" font="1" multiline="true" vscrollbar="true"  autovscroll="true" readonly="true"/>
 			</VerticalLayout>
-			<Control width="20" />
+			<Control width="10" />
+			
+			<VerticalLayout name="VerticalLayout_Expand" width="32">
+				<Control />
+				<Button name="Btn_Expand" width="32" height="32" normalimage="file='箭头向右.png'" hotimage="file='箭头向右悬停.png'" tooltip="展开设置面板" />
+				<Control />
+			</VerticalLayout>
+			
 			<VerticalLayout name="VerticalLayout_Setting" width="200" visible="false">
 				<Control height="10" />
 				<HorizontalLayout height="50">
-					<Text text="软件置顶" font="2" />
+					<Text text="窗口置顶" font="2" />
 					<Button name="Btn_FrontWnd" width="48" height="24" padding="0,0,0,0" normalimage="file='开关-关.png'" hotimage="file='开关-关悬停.png'"/>
 				</HorizontalLayout>
 				<HorizontalLayout height="50">
@@ -41,6 +48,13 @@
 				</HorizontalLayout>
 				<Control />
 			</VerticalLayout>
+			
+			<VerticalLayout name="VerticalLayout_Shrink" width="32" visible="false">
+				<Control />
+				<Button name="Btn_Shrink" width="32" height="32" normalimage="file='箭头向左.png'" hotimage="file='箭头向左悬停.png'" tooltip="收缩设置面板"/>
+				<Control />
+			</VerticalLayout>
+			
 		</HorizontalLayout>
 		
 		<!-- 状态栏 -->

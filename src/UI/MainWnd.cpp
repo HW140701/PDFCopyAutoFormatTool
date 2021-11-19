@@ -6,6 +6,9 @@ const TCHAR* const MainWnd_Btn_Min_Name = _T("Btn_Min");
 const TCHAR* const MainWnd_Btn_Max_Name = _T("Btn_Max");
 const TCHAR* const MainWnd_Btn_Close_Name = _T("Btn_Close");
 const TCHAR* const MainWnd_Btn_AutoCopyResultToClipboard_Name = _T("Btn_AutoCopyResultToClipboard");
+const TCHAR* const MainWnd_Btn_FrontWnd_Name = _T("Btn_FrontWnd");
+const TCHAR* const MainWnd_Btn_Expand_Name = _T("Btn_Expand");
+const TCHAR* const MainWnd_Btn_Shrink_Name = _T("Btn_Shrink");
 
 /*----- 富文本编辑框RichEdit的名称 -----*/
 const TCHAR* const MainWnd_RichEdit_Input_Name = _T("RichEdit_Input");
@@ -13,13 +16,19 @@ const TCHAR* const MainWnd_RichEdit_Output_Name = _T("RichEdit_Output");
 
 /*----- VerticalLayout布局的名称 -----*/
 const TCHAR* const MainWnd_VerticalLayout_Setting_Name = _T("VerticalLayout_Setting");
+const TCHAR* const MainWnd_VerticalLayout_Expand_Name = _T("VerticalLayout_Expand");
+const TCHAR* const MainWnd_VerticalLayout_Shrink_Name = _T("VerticalLayout_Shrink");
 
 MainWnd::MainWnd()
 	:m_pRichEdit_Input(nullptr),
 	m_pRichEdit_Output(nullptr),
 	m_pVerticalLayout_Setting(nullptr),
 	m_bAutoCopyResultToClipboard(false),
-	m_pButton_AutoCopyResultToClipboard(nullptr)
+	m_pButton_AutoCopyResultToClipboard(nullptr),
+	m_bFrontWnd(false),
+	m_pButton_FrontWnd(nullptr),
+	m_pVerticalLayout_Expand(nullptr),
+	m_pVerticalLayout_Shrink(nullptr)
 {
 }
 
@@ -81,13 +90,54 @@ void MainWnd::OnClickProcess(TNotifyUI& msg)
 
 		if (m_pVerticalLayout_Setting != nullptr)
 		{
+			// 如果设置面板可见
 			if (m_pVerticalLayout_Setting->IsVisible())
 			{
 				m_pVerticalLayout_Setting->SetVisible(false);
+
+				// 显示扩展按钮
+				if (m_pVerticalLayout_Expand != nullptr)
+				{
+					if (!m_pVerticalLayout_Expand->IsVisible())
+					{
+						m_pVerticalLayout_Expand->SetVisible(true);
+					}
+				}
+
+				// 隐藏缩放按钮
+				if (m_pVerticalLayout_Shrink != nullptr)
+				{
+					if (m_pVerticalLayout_Shrink->IsVisible())
+					{
+						m_pVerticalLayout_Shrink->SetVisible(false);
+					}
+				}
+
 			}
+			// 如果设置面板不可见
 			else
 			{
 				m_pVerticalLayout_Setting->SetVisible(true);
+
+				// 隐藏扩展按钮
+				if (m_pVerticalLayout_Expand != nullptr)
+				{
+					if (m_pVerticalLayout_Expand->IsVisible())
+					{
+						m_pVerticalLayout_Expand->SetVisible(false);
+					}
+				}
+
+				// 显示缩放按钮
+				if (m_pVerticalLayout_Shrink != nullptr)
+				{
+					if (!m_pVerticalLayout_Shrink->IsVisible())
+					{
+						m_pVerticalLayout_Shrink->SetVisible(true);
+					}
+				}
+
+
 			}
 			
 		}
@@ -131,6 +181,92 @@ void MainWnd::OnClickProcess(TNotifyUI& msg)
 				m_pButton_AutoCopyResultToClipboard->SetNormalImage("开关-关.png");
 				m_pButton_AutoCopyResultToClipboard->SetHotImage("开关-关悬停.png");
 				m_bAutoCopyResultToClipboard = false;
+			}
+		}
+	}
+	// 软件置顶
+	else if (_tcsicmp(msg.pSender->GetName(), MainWnd_Btn_FrontWnd_Name) == 0)
+	{
+		// 如果置顶选项为false，则置顶软件
+		if (!m_bFrontWnd)
+		{
+			if (m_pButton_FrontWnd != nullptr)
+			{
+				m_pButton_FrontWnd->SetNormalImage("开关-开.png");
+				m_pButton_FrontWnd->SetHotImage("开关-开悬停.png");
+				// 窗口置顶
+				::SetWindowPos(this->GetHWND(), HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+				m_bFrontWnd = true;
+			}
+		}
+		// 如果置顶选项为true，则不置顶软件
+		else
+		{
+			if (m_pButton_FrontWnd != nullptr)
+			{
+				m_pButton_FrontWnd->SetNormalImage("开关-关.png");
+				m_pButton_FrontWnd->SetHotImage("开关-关悬停.png");
+				// 窗口不置顶
+				::SetWindowPos(this->GetHWND(), HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+				m_bFrontWnd = false;
+			}
+		}
+	}
+	// 扩展面板按钮
+	else if (_tcsicmp(msg.pSender->GetName(), MainWnd_Btn_Expand_Name) == 0)
+	{
+		if (m_pVerticalLayout_Setting != nullptr)
+		{
+			if (!m_pVerticalLayout_Setting->IsVisible())
+			{
+				m_pVerticalLayout_Setting->SetVisible(true);
+			}
+		}
+
+		// 隐藏扩展按钮
+		if (m_pVerticalLayout_Expand != nullptr)
+		{
+			if (m_pVerticalLayout_Expand->IsVisible())
+			{
+				m_pVerticalLayout_Expand->SetVisible(false);
+			}
+		}
+
+		// 显示缩放按钮
+		if (m_pVerticalLayout_Shrink != nullptr)
+		{
+			if (!m_pVerticalLayout_Shrink->IsVisible())
+			{
+				m_pVerticalLayout_Shrink->SetVisible(true);
+			}
+		}
+	}
+	// 缩放面板按钮
+	else if (_tcsicmp(msg.pSender->GetName(), MainWnd_Btn_Shrink_Name) == 0)
+	{
+		if (m_pVerticalLayout_Setting != nullptr)
+		{
+			if (m_pVerticalLayout_Setting->IsVisible())
+			{
+				m_pVerticalLayout_Setting->SetVisible(false);
+			}
+		}
+
+		// 显示扩展按钮
+		if (m_pVerticalLayout_Expand != nullptr)
+		{
+			if (!m_pVerticalLayout_Expand->IsVisible())
+			{
+				m_pVerticalLayout_Expand->SetVisible(true);
+			}
+		}
+
+		// 隐藏缩放按钮
+		if (m_pVerticalLayout_Shrink != nullptr)
+		{
+			if (m_pVerticalLayout_Shrink->IsVisible())
+			{
+				m_pVerticalLayout_Shrink->SetVisible(false);
 			}
 		}
 	}
@@ -267,8 +403,23 @@ void MainWnd::InitControl()
 		m_pVerticalLayout_Setting = static_cast<CVerticalLayoutUI*>(m_PaintManager.FindControl(MainWnd_VerticalLayout_Setting_Name));
 	}
 
+	if (m_pVerticalLayout_Expand == nullptr)
+	{
+		m_pVerticalLayout_Expand = static_cast<CVerticalLayoutUI*>(m_PaintManager.FindControl(MainWnd_VerticalLayout_Expand_Name));
+	}
+
+	if (m_pVerticalLayout_Shrink == nullptr)
+	{
+		m_pVerticalLayout_Shrink = static_cast<CVerticalLayoutUI*>(m_PaintManager.FindControl(MainWnd_VerticalLayout_Shrink_Name));
+	}
+
 	if (m_pButton_AutoCopyResultToClipboard == nullptr)
 	{
 		m_pButton_AutoCopyResultToClipboard = static_cast<CButtonUI*>(m_PaintManager.FindControl(MainWnd_Btn_AutoCopyResultToClipboard_Name));
+	}
+
+	if (m_pButton_FrontWnd == nullptr)
+	{
+		m_pButton_FrontWnd = static_cast<CButtonUI*>(m_PaintManager.FindControl(MainWnd_Btn_FrontWnd_Name));
 	}
 }
