@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<Window size="800,600" roundcorner="0,0" sizebox="6,6,6,6" caption="0,0,0,32" mininfo="800,600" >
-	<Font id="0" name="微软雅黑" size="36" bold="true"/>
-	<Font id="1" name="微软雅黑" size="28" bold="false"/>
-	<Font id="2" name="微软雅黑" size="24" bold="false"/>
-	<Font id="3" name="微软雅黑" size="72" bold="true"/>
+<Window size="800,600" roundcorner="0,0" sizebox="6,6,6,6" caption="0,0,0,32" mininfo="480,320" >
+	<Font id="1" name="微软雅黑" size="16" bold="false"/>
+	<Font id="2" name="华文新魏" size="16" bold="false"/>
+	<Font id="3" name="Roboto-Black-1" size="16" bold="false"/>
 	
 	<VerticalLayout bkcolor="0xFFFFFFFF">
 		<!-- 标题栏 -->
@@ -19,11 +18,11 @@
 		<!-- 主要功能区 -->
 		<HorizontalLayout >
 			<Control width="20" />
-			<HorizontalLayout>
-				<RichEdit name="RichEdit_Input" bordercolor="0xFF000000" bordersize="1" borderround="3,3" mouse="true" />
-				<Control width="10" />
-				<RichEdit name="RichEdit_Output" bordercolor="0xFF000000" bordersize="1" borderround="3,3" mouse="true" />
-			</HorizontalLayout>
+			<VerticalLayout>
+				<RichEdit name="RichEdit_Input" bordercolor="0xFF000000" bordersize="1" borderround="3,3" font="1" multiline="true" vscrollbar="true"  autovscroll="true" />
+				<Control height="10" />
+				<RichEdit name="RichEdit_Output" bordercolor="0xFF000000" bordersize="1" borderround="3,3" font="1" readonly="true"/>
+			</VerticalLayout>
 			<Control width="20" />
 		</HorizontalLayout>
 		

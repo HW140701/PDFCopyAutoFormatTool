@@ -159,12 +159,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\ProjectUtils\DuilibAddFont.cpp" />
     <ClCompile Include="..\src\ProjectUtils\PathUtils.cpp" />
     <ClCompile Include="..\src\UI\MainWnd.cpp" />
     <ClCompile Include="..\src\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\ProjectHeader.h" />
+    <ClInclude Include="..\src\ProjectUtils\DuilibAddFont.h" />
     <ClInclude Include="..\src\ProjectUtils\PathUtils.h" />
     <ClInclude Include="..\src\ProjectUtils\ProjectUtils.h" />
     <ClInclude Include="..\src\UI\MainWnd.h" />

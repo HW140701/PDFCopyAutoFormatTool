@@ -18,6 +18,9 @@ public:
 	// 得到Duilib的皮肤文件路径
 	static std::string GetSkinDirectory();
 
+	// 得到Duilib的字体路径
+	static std::string GetFontDirectory();
+
 };
 
 

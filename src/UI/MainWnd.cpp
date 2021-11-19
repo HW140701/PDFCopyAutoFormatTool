@@ -88,19 +88,9 @@ void MainWnd::OnTextChanged(TNotifyUI& msg)
 		{
 			std::string richEdit_Input_str = CDuiStringToString(m_pRichEdit_Input->GetText());
 
-			// 清除换行符
-			int r = richEdit_Input_str.find('\r\n');
-			while (r != string::npos)
-			{
-				if (r != string::npos)
-				{
-					richEdit_Input_str.replace(r, 1, "");
-					r = richEdit_Input_str.find('\r\n');
-				}
-			}
-
-			/*std::regex pattern(".\r");
-			std::regex_replace(richEdit_Input_str, pattern, "");*/
+			// 正则表达式去掉换行符以及符号-
+			std::regex pattern("\\r\\n|\\n|\\r|-");
+			richEdit_Input_str = std::regex_replace(richEdit_Input_str, pattern, "");
 
 			if (m_pRichEdit_Output != nullptr)
 			{
@@ -128,6 +118,7 @@ void MainWnd::InitControl()
 		{
 			// 设置以便RichEdit控件接收到textchanged消息
 			m_pRichEdit_Input->SetEventMask(ENM_CHANGE);
+			m_pRichEdit_Input->SetFocus();
 		}
 	}
 

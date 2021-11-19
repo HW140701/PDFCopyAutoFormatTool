@@ -36,5 +36,6 @@ using namespace DuiLib;
 // 自定义工具
 #include "ProjectUtils/PathUtils.h"
 #include "ProjectUtils/ProjectUtils.h"
+#include "ProjectUtils/DuilibAddFont.h"
 
 #endif // !PROJECT_HEADER_H

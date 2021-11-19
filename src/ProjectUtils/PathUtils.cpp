@@ -89,3 +89,12 @@
 #endif // DEBUG	
 	}
 
+	std::string PathUtils::GetFontDirectory()
+	{
+#ifdef _DEBUG
+		return GetCurrentExeDirectory() + "../../../.././resource/font/";
+#else
+		return GetCurrentExeDirectory() + "./resource/font/";
+#endif // DEBUG	
+	}
+
