@@ -8,7 +8,7 @@
 	
 	<VerticalLayout bkcolor="0xFFFFFFFF">
 		<!-- 标题栏 -->
-		<HorizontalLayout height="32">
+		<HorizontalLayout height="32" bkcolor="0xFF80397B">
 			<Control />
 			<HorizontalLayout width="104">
 				<Button name="Btn_Setting" width="24" height="24" padding="0,0,0,0" normalimage="file='设置.png'" hotimage="file='设置悬停.png'"/>
@@ -18,6 +18,8 @@
 			</HorizontalLayout>
 		</HorizontalLayout>
 		
+		<Control height="20" />
+		
 		<!-- 主要功能区 -->
 		<HorizontalLayout >
 			<Control width="20" />
@@ -26,7 +28,7 @@
 				<Control height="10" />
 				<RichEdit name="RichEdit_Output" inset="5,5,5,5" bordercolor="0xFF000000" focusbordercolor="0xFF6d9eeb" bordersize="2" borderround="3,3" font="1" multiline="true" vscrollbar="true"  autovscroll="true" readonly="true"/>
 			</VerticalLayout>
-			<Control width="10" />
+			<Control width="20" />
 			<VerticalLayout name="VerticalLayout_Setting" width="200" visible="false">
 				<HorizontalLayout>
 					<Text text="自动复制结果到剪切板" font="2" />
