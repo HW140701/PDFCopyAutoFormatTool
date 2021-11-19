@@ -1,17 +1,25 @@
 #include "MainWnd.h"
 
 /*----- 按钮Button的名称 -----*/
+const TCHAR* const MainWnd_Btn_Setting_Name = _T("Btn_Setting");
 const TCHAR* const MainWnd_Btn_Min_Name = _T("Btn_Min");
 const TCHAR* const MainWnd_Btn_Max_Name = _T("Btn_Max");
 const TCHAR* const MainWnd_Btn_Close_Name = _T("Btn_Close");
+const TCHAR* const MainWnd_Btn_AutoCopyResultToClipboard_Name = _T("Btn_AutoCopyResultToClipboard");
 
 /*----- 富文本编辑框RichEdit的名称 -----*/
 const TCHAR* const MainWnd_RichEdit_Input_Name = _T("RichEdit_Input");
 const TCHAR* const MainWnd_RichEdit_Output_Name = _T("RichEdit_Output");
 
+/*----- VerticalLayout布局的名称 -----*/
+const TCHAR* const MainWnd_VerticalLayout_Setting_Name = _T("VerticalLayout_Setting");
+
 MainWnd::MainWnd()
 	:m_pRichEdit_Input(nullptr),
-	m_pRichEdit_Output(nullptr)
+	m_pRichEdit_Output(nullptr),
+	m_pVerticalLayout_Setting(nullptr),
+	m_bAutoCopyResultToClipboard(false),
+	m_pButton_AutoCopyResultToClipboard(nullptr)
 {
 }
 
@@ -66,8 +74,26 @@ void MainWnd::InitWindow()
 
 void MainWnd::OnClickProcess(TNotifyUI& msg)
 {
+	// 设置
+	if (_tcsicmp(msg.pSender->GetName(), MainWnd_Btn_Setting_Name) == 0)
+	{
+		//ResizeClient(800, 600);
+
+		if (m_pVerticalLayout_Setting != nullptr)
+		{
+			if (m_pVerticalLayout_Setting->IsVisible())
+			{
+				m_pVerticalLayout_Setting->SetVisible(false);
+			}
+			else
+			{
+				m_pVerticalLayout_Setting->SetVisible(true);
+			}
+			
+		}
+	}
 	// 最小化
-	if (_tcsicmp(msg.pSender->GetName(), MainWnd_Btn_Min_Name) == 0)
+	else if (_tcsicmp(msg.pSender->GetName(), MainWnd_Btn_Min_Name) == 0)
 	{
 #if defined(UNDER_CE)
 		::ShowWindow(m_hWnd, SW_MINIMIZE);
@@ -85,6 +111,28 @@ void MainWnd::OnClickProcess(TNotifyUI& msg)
 	{
 		::SendMessage(this->GetHWND(), WM_CLOSE, NULL, NULL);
 		PostQuitMessage(0);
+	}
+	// 自动复制到剪切板
+	else if (_tcsicmp(msg.pSender->GetName(), MainWnd_Btn_AutoCopyResultToClipboard_Name) == 0)
+	{
+		if (!m_bAutoCopyResultToClipboard)
+		{
+			if (m_pButton_AutoCopyResultToClipboard != nullptr)
+			{
+				m_pButton_AutoCopyResultToClipboard->SetNormalImage("开关-开.png");
+				m_pButton_AutoCopyResultToClipboard->SetHotImage("开关-开悬停.png");
+				m_bAutoCopyResultToClipboard = true;
+			}
+		}
+		else
+		{
+			if (m_pButton_AutoCopyResultToClipboard != nullptr)
+			{
+				m_pButton_AutoCopyResultToClipboard->SetNormalImage("开关-关.png");
+				m_pButton_AutoCopyResultToClipboard->SetHotImage("开关-关悬停.png");
+				m_bAutoCopyResultToClipboard = false;
+			}
+		}
 	}
 }
 
@@ -112,7 +160,12 @@ void MainWnd::OnTextChanged(TNotifyUI& msg)
 
 				m_pRichEdit_Input->SetFocus();
 
-				AutoCopyToClipboard(richEdit_Input_str);
+				// 自动复制格式化结果到剪切板
+				if (m_bAutoCopyResultToClipboard)
+				{
+					AutoCopyToClipboard(richEdit_Input_str);
+				}
+				
 			}
 		}
 	}
@@ -207,5 +260,15 @@ void MainWnd::InitControl()
 			// 设置以便RichEdit控件接收到textchanged消息
 			m_pRichEdit_Output->SetEventMask(ENM_CHANGE);
 		}
+	}
+
+	if (m_pVerticalLayout_Setting == nullptr)
+	{
+		m_pVerticalLayout_Setting = static_cast<CVerticalLayoutUI*>(m_PaintManager.FindControl(MainWnd_VerticalLayout_Setting_Name));
+	}
+
+	if (m_pButton_AutoCopyResultToClipboard == nullptr)
+	{
+		m_pButton_AutoCopyResultToClipboard = static_cast<CButtonUI*>(m_PaintManager.FindControl(MainWnd_Btn_AutoCopyResultToClipboard_Name));
 	}
 }

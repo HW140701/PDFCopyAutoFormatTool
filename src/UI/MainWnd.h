@@ -30,6 +30,12 @@ private:
 
 	CRichEditUI* m_pRichEdit_Input;
 	CRichEditUI* m_pRichEdit_Output;
+
+	CButtonUI* m_pButton_AutoCopyResultToClipboard;
+
+	CVerticalLayoutUI* m_pVerticalLayout_Setting;
+
+	bool m_bAutoCopyResultToClipboard;
 };
 
 

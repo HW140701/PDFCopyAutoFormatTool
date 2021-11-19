@@ -10,7 +10,8 @@
 		<!-- 标题栏 -->
 		<HorizontalLayout height="32">
 			<Control />
-			<HorizontalLayout width="80">
+			<HorizontalLayout width="104">
+				<Button name="Btn_Setting" width="24" height="24" padding="0,0,0,0" normalimage="file='设置.png'" hotimage="file='设置悬停.png'"/>
 				<Button name="Btn_Min" width="24" height="24" padding="0,0,0,0" normalimage="file='最小化.png'" hotimage="file='最小化悬停.png'"/>
 				<Button name="Btn_Max" width="24" height="24" padding="0,0,0,0" normalimage="file='最大化.png'" hotimage="file='最大化悬停.png'"/>
 				<Button name="Btn_Close" width="24" height="24" padding="0,0,0,0" normalimage="file='关闭.png'" hotimage="file='关闭悬停.png'"/>
@@ -25,7 +26,14 @@
 				<Control height="10" />
 				<RichEdit name="RichEdit_Output" inset="5,5,5,5" bordercolor="0xFF000000" focusbordercolor="0xFF6d9eeb" bordersize="2" borderround="3,3" font="1" multiline="true" vscrollbar="true"  autovscroll="true" readonly="true"/>
 			</VerticalLayout>
-			<Control width="20" />
+			<Control width="10" />
+			<VerticalLayout name="VerticalLayout_Setting" width="200" visible="false">
+				<HorizontalLayout>
+					<Text text="自动复制结果到剪切板" font="2" />
+					<Button name="Btn_AutoCopyResultToClipboard" width="48" height="24" padding="0,0,0,0" normalimage="file='开关-关.png'" hotimage="file='开关-关悬停.png'"/>
+				</HorizontalLayout>
+				
+			</VerticalLayout>
 		</HorizontalLayout>
 		
 		<!-- 状态栏 -->
